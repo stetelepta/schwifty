@@ -6,8 +6,6 @@ from typing import List
 from typing import Optional
 
 import iso3166
-from pycountry import countries
-from pycountry.db import Data
 
 from schwifty import common
 from schwifty import exceptions
@@ -283,9 +281,9 @@ class BIC(common.Base):
             return "default"
 
     @property
-    def country(self) -> Optional[Data]:
+    def country(self) -> str:
         """Country: The country this BIC is registered in."""
-        return countries.get(alpha_2=self.country_code)
+        return self.country_code
 
     @property
     def bank_code(self) -> str:
