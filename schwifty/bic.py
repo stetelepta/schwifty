@@ -3,7 +3,6 @@ import warnings
 from functools import partial
 
 import iso3166
-from pycountry import countries
 
 from schwifty import common
 from schwifty import exceptions
@@ -272,7 +271,7 @@ class BIC(common.Base):
     @property
     def country(self):
         """Country: The country this BIC is registered in."""
-        return countries.get(alpha_2=self.country_code)
+        return self.country_code
 
     bank_code = property(
         partial(common.Base._get_component, start=0, end=4),

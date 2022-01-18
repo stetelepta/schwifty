@@ -2,8 +2,6 @@ import re
 import string
 from functools import partial
 
-from pycountry import countries
-
 from schwifty import common
 from schwifty import exceptions
 from schwifty import registry
@@ -274,7 +272,7 @@ class IBAN(common.Base):
     @property
     def country(self):
         """Country: The country this IBAN is registered in."""
-        return countries.get(alpha_2=self.country_code)
+        return self.country_code
 
     def _get_code(self, code_type):
         start, end = self.spec["positions"][code_type]
