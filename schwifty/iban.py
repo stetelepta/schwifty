@@ -5,9 +5,6 @@ import string
 from typing import Dict
 from typing import Optional
 
-from pycountry import countries
-from pycountry.db import Data
-
 from schwifty import common
 from schwifty import exceptions
 from schwifty import registry
@@ -288,9 +285,9 @@ class IBAN(common.Base):
             return None
 
     @property
-    def country(self) -> Optional[Data]:
+    def country(self) -> str:
         """Country: The country this IBAN is registered in."""
-        return countries.get(alpha_2=self.country_code)
+        return self.country_code
 
     def _get_code(self, code_type: str) -> str:
         start, end = self.spec["positions"][code_type]
